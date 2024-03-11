@@ -1,0 +1,79 @@
+#include "c8051F340.h"
+void DelayMs(unsigned int Ms);
+void Write_Command_Lcd(unsigned char Command);
+void Write_Data_Lcd(unsigned char Character);
+
+sbit LCD_RS = P1^5;
+sbit LCD_RW = P1^6;
+sbit LCD_EN = P1^7;
+sbit BUZZER = P3^3;
+
+void main(){
+	XBR1 =0x40;
+	P2MDOUT = 0xFF;
+	P1MDOUT = 0xE0;
+	BUZZER = 0;
+
+	Write_Command_Lcd(0x01);
+	DelayMs(50);
+	Write_Command_Lcd(0x38);
+	DelayMs(50);
+	Write_Command_Lcd(0x0C);
+	DelayMs(50);
+	Write_Command_Lcd(0x80);
+	DelayMs(50);
+	Write_Data_Lcd('k');
+	DelayMs(50);
+	Write_Data_Lcd('r');
+	DelayMs(50);
+	Write_Data_Lcd('i');
+	DelayMs(50);
+	Write_Data_Lcd('s');
+	DelayMs(50);
+	Write_Data_Lcd('h');
+	DelayMs(50);
+	Write_Data_Lcd('n');
+	DelayMs(50);
+	Write_Data_Lcd('a');
+	DelayMs(50);
+	Write_Command_Lcd(0xC0);
+	DelayMs(50);
+	Write_Data_Lcd('d');
+	DelayMs(50);
+	Write_Data_Lcd('u');
+	DelayMs(50);
+	Write_Data_Lcd('g');
+	DelayMs(50);
+	Write_Data_Lcd('a');
+	DelayMs(50);
+	Write_Data_Lcd('d');
+	DelayMs(50);
+
+	while(1);
+}
+
+void DelayMs(unsigned int Ms){
+	unsigned int n;
+	unsigned int i;
+	for(n=0;n<Ms;n++){
+		for(i=0;i<65;i++);
+	}
+}
+
+void Write_Command_Lcd(unsigned char Command){
+	LCD_RS = 0;
+	LCD_RW = 0;
+	P2 = Command;
+	LCD_EN = 1;
+	DelayMs(50);
+	LCD_EN = 0;
+}
+
+void Write_Data_Lcd(unsigned char Character){
+	LCD_RS =1;
+	LCD_RW =0;
+	P2 =Character;
+	LCD_EN = 1;
+	DelayMs(50);
+	LCD_EN = 0;
+}
