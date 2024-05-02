@@ -1,0 +1,48 @@
+/*  A. To sort the numbers in an array using functions. Write swap function using call by 
+reference.  */ 
+#include <iostream> 
+using namespace std; 
+// Function to swap two numbers using call by reference 
+void swap(int &a, int &b) 
+{ 
+    int temp = a; 
+    a = b; 
+    b = temp; 
+} 
+// Function to perform bubble sort on an array 
+void bubbleSort(int arr[], int n) 
+{ 
+    for (int i = 0; i < n - 1; i++) 
+    { 
+        for (int j = 0; j < n - i - 1; j++) 
+        { 
+            if (arr[j] > arr[j + 1]) 
+            { 
+                // Call swap function to swap elements 
+                swap(arr[j], arr[j + 1]); 
+            } 
+        } 
+    } 
+} 
+int main() 
+{ 
+    int size; 
+    cout<<"Enter size of array: "; 
+    cin>>size;     
+    int numbers[size]; 
+    // Input numbers 
+    cout << "Enter " << size << " numbers:" << endl; 
+    for (int i = 0; i < size; i++) 
+    { 
+        cin >> numbers[i]; 
+    } 
+// Perform sorting using bubble sort 
+bubbleSort(numbers, size); 
+// Display sorted numbers 
+cout << "Sorted numbers:" << endl; 
+for (int i = 0; i < size; i++) 
+{ 
+cout << numbers[i] << " "; 
+} 
+return 0; 
+}
