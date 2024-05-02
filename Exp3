@@ -1,0 +1,43 @@
+/*Binary operator overloading*/ 
+#include <iostream> 
+using namespace std; 
+class complex 
+{ 
+int real; 
+int img; 
+public: 
+void read(); 
+void display(); 
+complex operator+(complex); 
+}; 
+void complex::read() 
+{ 
+cout<<"enter real & imaginary"; 
+cin>>real>>img; 
+} 
+void complex::display() 
+{ 
+if (img>0) 
+cout<<real<<"+"<<img<<"i"<<endl; 
+else if (img<0) 
+cout<<real<<img<<"i"<<endl; 
+else 
+cout<<real<<endl; 
+} 
+complex complex::operator +(complex c2) 
+{ 
+complex s; 
+s.real=real+c2.real; 
+s.img=img+c2.img; 
+return(s); 
+} 
+int main() 
+{ 
+complex c1,c2,sum; 
+cout<<"Enter c1 and c2\n"; 
+c1.read(); 
+c2.read(); 
+sum=c1+c2; 
+sum.display(); 
+return 0; 
+}
