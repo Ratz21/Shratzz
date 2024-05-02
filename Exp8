@@ -1,0 +1,83 @@
+-- SQL --DLL COMMANDS(CREATE,ALTER,DROP,TRUNCATE,RENAME,DESCRIBE)
+-- DLL COMMANDS (DATA DEFINATION LANGUAGE)
+-- 1) CREATE TABLE
+CREATE TABLE employee_db
+(ID char(3),
+Em_name varchar(30),
+dept_name varchar(30),
+salary decimal(8,2)); -- 8 digits 2 decimal parts ie 1 deimal point 
+SELECT * FROM employee_db;
+
+-- Insert data
+INSERT INTO employee_db
+VALUES
+('001','Eshal','Ece','800000'),
+('002','Gracia','Ece','810000'),
+('003','Samruddhi','Ece','790000'),
+('004','hazel','cs','750000'),
+('005','Anam','diploma','60000');
+
+-- Display all information of the employee_db table
+select * from employee_db;
+
+-- Display uniquie dept_name from employee_db table
+select distinct dept_name from employee_db;
+
+-- List the emps in the ascending order of their Salaries
+select * from employee_db order by salary asc;
+
+-- Display all unique jobs in the descending order
+select distinct dept_name from employee_db order by dept_name desc;
+
+-- List the details of the emps in asc order of the salary and desc of dept_name
+select * from employee_db order by salary asc, dept_name desc;
+
+-- 2)Alter
+-- Alter command is used for altering the table structure ,such as,
+-- 1. add a column to existing table
+-- 2. rename any existing column
+-- 3.to change datatype of any column or to modify its size
+-- 4. to drop a column from table
+
+-- 1. add a column
+Alter table employee_db add Email varchar(30);
+select * from employee_db;
+set SQL_SAFE_UPDATES=0;
+UPDATE employee_db
+SET Email="eshal@gmail.com"
+where ID=001;
+
+UPDATE employee_db
+SET Email="gracia@gmail.com"
+where ID=002;
+
+select * from employee_db;
+
+-- By setting default values of new column
+Alter table employee_db add City varchar(30) default 'PUNE';
+
+-- Add Date of birth column
+Alter table employee_db add DOB date default '2000-10-01';
+
+-- rename column
+ Alter table employee_db rename column Em_name to Full_Name;
+ 
+ -- 3. Modefy a column datatype/size
+ Alter table employee_db modify ID INT PRIMARY key;
+ 
+-- 4. To drop a column
+Alter table employee_db drop column salary;
+
+-- 3) Drop table
+-- DROP TABLE command is used to drop an existing table in a database
+DROP TABLE EMPLOYEE;
+
+-- 4) TRUNCATE
+ -- It is used to delete complete data fromand existing table
+ TRUNCATE table example;
+ 
+ -- 5) RENAME
+  -- RENAME TABLE employee_db TO mydb;
+  
+  -- 6)Describe Table 
+  describe mydb
