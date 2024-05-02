@@ -1,0 +1,76 @@
+package My_Pack50;  
+  
+  public class 
+Example50 {  
+  int a_de=10;  
+ private int a_pri=20;  
+ protected int 
+a_pro=30;   public int 
+a_pub=40;  
+  void show()  
+  {  
+    System.out.println("a_de = "+a_de);  
+    System.out.println("a_pri = "+a_pri);  
+    System.out.println("a_pro = "+a_pro);  
+    System.out.println("a_pub = "+a_pub);  
+  }  
+   public static void main(String[] args) 
+{     // TODO Auto-generated method 
+stub     Example50 ob=new 
+Example50();     ob.show();  
+      
+  
+  }  
+  
+}  
+  
+  
+package My_Pack50;  
+ class Test52 extends 
+Example50  
+{  
+  void show()  
+  {  
+    System.out.println("a_de = "+a_de);  
+    //System.out.println("a_pri = "+a_pri);  
+    System.out.println("a_pro = "+a_pro);  
+    System.out.println("a_pub = "+a_pub);  
+  }  
+}   
+public class Test51  
+{  
+  public static void main(String[] args)  
+  {  
+    // TODO Auto-generated method stub  
+   Test52 ob= new Test52();    
+ ob.show();  
+  
+  }  
+  
+}  
+  
+  
+  
+package My_Pack60; import 
+My_Pack50.Example50; class 
+Test63  
+{  
+  void show()  
+  {  
+    Example50 ob1=new Example50();  
+    //System.out.println("a_de = "+ob1.a_de);  
+    //System.out.println("a_pri = "+a_pri);  
+    //System.out.println("a_pro = "+ob1.a_pro);  
+    System.out.println("a_pub = "+ob1.a_pub);  
+  }  
+}  
+public class Example60 {  
+   public static void main(String[] args) 
+{  
+    // TODO Auto-generated method stub}  
+    Test63 ob2=new Test63();    
+ ob2.show();  
+      
+  }  
+  
+} 
