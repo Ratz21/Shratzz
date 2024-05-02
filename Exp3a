@@ -1,0 +1,114 @@
+//Exp 3a
+//complex number arithmetic operation using constructor
+#include<iostream>
+#include<math.h>
+using namespace std;
+class complex
+{
+    float img,real;
+    public:
+    complex(){};
+    complex(float,float);  //parameterised constructor
+    ~complex(){};
+    void display();
+    complex operator+(complex);
+    complex operator-(complex);
+    complex operator/(complex);
+    complex operator*(complex);
+    complex operator~();
+};
+int main()
+{
+    complex c1(3.0,4.0),c2(8.0,2.5),result(0,0);
+    int op,ch;
+    while(op!=6)
+    {
+       cout<<"1.Addition\t2.Subtraction\t3.Multiplication\t4.Division\t5.Conjugate\t6.Exit\n";
+       cout<<"enter your choice"<<endl;
+       cin>>op;
+       switch(op)
+       {
+           case 1:result=c1+c2;  //c1.operator+(c2);
+           cout<<"Addition is: ";
+           break;
+           case 2:result=c1-c2;   //c1.operator-(c2);
+           cout<<"Subtraction is: ";
+           break;
+           case 3:result=c1*c2;    //c1.operator*(c2);
+           cout<<"Multiplication is: ";
+           break;
+           case 4:result=c1/c2;   //c1.operator/(c2);
+           cout<<"Division is: ";
+           break;
+           case 5:
+           cout<<"Which numbers conjugate do you want"<<endl;
+           cout<<"1.First\t2.Second\nEnter your choice"<<endl;
+           cin>>ch;
+           if(ch==1)
+           result=~c1;   //c1.operator~();
+           else
+           result=~c2;   //c2.conju();
+           cout<<"Conjugate is: ";
+           break;
+       }
+       if(op!=6){
+       result.display();
+       cout<<endl;}
+    }
+    return 0;
+}
+complex::complex(float a,float b)
+{
+    real=a;
+    img=b;
+}
+void complex::display()
+{
+    if(img>0)
+    cout<<real<<"+"<<img<<"i"<<endl;
+    else
+    cout<<real<<img<<"i"<<endl;
+}
+complex complex::operator+(complex a)
+{
+    complex s(0,0);
+    s.real=real+a.real;
+    s.img=img+a.img;
+    return s;
+}
+complex complex::operator-(complex a)
+{
+    complex s(0,0);
+    s.real=real-a.real;
+    s.img=img-a.img;
+    return s;
+}
+complex complex::operator*(complex a)
+{
+    complex s(0,0);
+    s.real=(real*a.real-img*a.img);
+    s.img=(real*a.img+img*a.real);
+    return s;
+}
+complex complex::operator/(complex a)
+{
+    complex s;
+    complex c3=~a;
+    float d=(pow(a.real,2)+pow(a.img,2));
+    complex c4;
+    c4.real=(real*c3.real-img*c3.img);
+    c4.img=(real*c3.img+img*c3.real);
+    s.real=c4.real/d;
+    s.img=c4.img/d;
+
+    //s.real=(real*a.real+img*a.img)/(a.real*a.real+real*real);
+    //s.img=(img*a.real-real*a.img)/(a.real*a.real+real*real);
+    return s;
+}
+complex complex::operator~()
+{
+   complex s(0,0);
+   s.real=real;
+   s.img=-img;
+   return s;
+}
